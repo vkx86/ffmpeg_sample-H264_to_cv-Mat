@@ -9,7 +9,6 @@ void H264Decoder::init() {
 
     matReady = false;
 
-    avcodec_register_all();
     av_init_packet(&avpkt);
 
     codec = avcodec_find_decoder(AV_CODEC_ID_H264);

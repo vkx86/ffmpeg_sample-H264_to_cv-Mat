@@ -12,14 +12,16 @@ set(files
 
 include_directories(
         ${OpenCV_INCLUDE_DIRS}
-	/home/curi/java/jdk1.8.0_131/include
-	/home/curi/java/jdk1.8.0_131/include/linux
+	#/home/curi/java/jdk1.8.0_131/include
+	#/home/curi/java/jdk1.8.0_131/include/linux
         /usr/include/libavcodec
         /usr/include/libavformat
         /usr/include/libswscale
 )
+
 #add_library(H264Decoder SHARED ${files})  for build a .so file
 add_executable(H264Decoder ${files})
+
 target_link_libraries(H264Decoder
         ${OpenCV_LIBS}
         /usr/lib/x86_64-linux-gnu/libavcodec.so
