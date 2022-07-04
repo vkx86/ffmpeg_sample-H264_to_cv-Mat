@@ -4,6 +4,9 @@
 
 #include "H264Decoder.h"
 
+H264Decoder::H264Decoder() {
+    init();
+}
 
 void H264Decoder::init() {
 
@@ -16,13 +19,14 @@ void H264Decoder::init() {
         fprintf(stderr, "Codec not found\n");
         exit(1);
     }
-    c = avcodec_alloc_context3(codec);
-    if (!c) {
+
+    ctx = avcodec_alloc_context3(codec);
+    if (!ctx) {
         fprintf(stderr, "Could not allocate video codec context\n");
         exit(1);
     }
 
-    if (avcodec_open2(c, codec, NULL) < 0) {
+    if (avcodec_open2(ctx, codec, nullptr) < 0) {
         fprintf(stderr, "Could not open codec\n");
         exit(1);
     }
@@ -41,44 +45,51 @@ void H264Decoder::init() {
 
 }
 
-void H264Decoder::decode(unsigned char *inputbuf, size_t size){
+void H264Decoder::decode(unsigned char *inputBuff, size_t size){
 
     avpkt.size = size;
     if(avpkt.size == 0)
         return;
 
-    avpkt.data = inputbuf;
+    avpkt.data = inputBuff;
 
     int len, got_frame;
 
 
-    len = avcodec_decode_video2(c, frame, &got_frame, &avpkt);
+    len =
+        avcodec_decode_video2(ctx, frame, &got_frame, &avpkt);
+        //avcodec_receive_frame(ctx, frame);
 
     if (len < 0) {
         matReady = false;
         fprintf(stderr, "Error while decoding frame %d\n", frame_count);
         frame_count++;
 
-        return ;
+        return;
     }
+
     if(out_buffer == nullptr){
-        BGRsize = avpicture_get_size(AV_PIX_FMT_BGR24, c->width,
-                                     c->height);
+
+        BGRsize = avpicture_get_size(AV_PIX_FMT_BGR24, ctx->width,
+                                     ctx->height);
         out_buffer = (uint8_t *) av_malloc(BGRsize);
+
         avpicture_fill((AVPicture *) pFrameBGR, out_buffer, AV_PIX_FMT_BGR24,
-                       c->width, c->height);
+                       ctx->width, ctx->height);
 
         img_convert_ctx =
-                sws_getContext(c->width, c->height, c->pix_fmt,
-                               c->width, c->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, NULL, NULL,
-                               NULL);
-        pCvMat.create(cv::Size(c->width, c->height), CV_8UC3);
+                sws_getContext(ctx->width, ctx->height, ctx->pix_fmt,
+                               ctx->width, ctx->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, nullptr, nullptr,
+                               nullptr);
+        pCvMat.create(cv::Size(ctx->width, ctx->height), CV_8UC3);
 
     }
+
     if (got_frame) {
+
         matReady = true;
         sws_scale(img_convert_ctx, (const uint8_t *const *)frame->data,
-                  frame->linesize, 0, c->height, pFrameBGR->data, pFrameBGR->linesize);
+                  frame->linesize, 0, ctx->height, pFrameBGR->data, pFrameBGR->linesize);
 
         memcpy(pCvMat.data, out_buffer, BGRsize);
 
@@ -93,9 +104,6 @@ void H264Decoder::decode(unsigned char *inputbuf, size_t size){
         avpkt.data += len;
     }
 
-
-
-
 }
 
 void H264Decoder::play() {
@@ -105,16 +113,12 @@ void H264Decoder::play() {
     }
 }
 
-H264Decoder::H264Decoder() {
-    init();
-}
-
 cv::Mat H264Decoder::getMat() {
     if(matReady){
         return pCvMat;
     }
     else{
-        return cv::Mat();
+        return {};
     }
 }
 

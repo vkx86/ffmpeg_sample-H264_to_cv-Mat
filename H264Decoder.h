@@ -35,25 +35,25 @@ public :
     H264Decoder();
 //    ~H264Decoder(); TODO
     void init();
-    void decode(unsigned char *inputbuf, size_t size);
+    void decode(unsigned char *inputBuff, size_t size);
     void play();
     cv::Mat getMat();
 
 private:
 
-    const AVCodec *codec;
-    AVCodecContext *c = nullptr;
-    int frame_count;
-    AVFrame *frame;
-    AVPacket avpkt;
-    AVFrame *pFrameBGR;
+    const AVCodec *codec{};
+    AVCodecContext *ctx = nullptr;
+    int frame_count{};
+    AVFrame *frame{};
+    AVPacket avpkt{};
+    AVFrame *pFrameBGR{};
 
-    int BGRsize;
+    int BGRsize{};
     uint8_t *out_buffer = nullptr;
 
-    struct SwsContext *img_convert_ctx;
+    struct SwsContext *img_convert_ctx{};
     cv::Mat pCvMat;
-    bool matReady;
+    bool matReady{};
 
 };
 

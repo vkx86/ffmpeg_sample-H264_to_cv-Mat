@@ -14,12 +14,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1089731-d0f5-4bcd-90f1-fcecea1d07a6" name="Default" comment="">
+    <list default="true" id="d1089731-d0f5-4bcd-90f1-fcecea1d07a6" name="Default" comment="adaptations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/H264Decoder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/H264Decoder.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/H264Decoder.h" beforeDir="false" afterPath="$PROJECT_DIR$/H264Decoder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/sample.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,8 +237,16 @@
       <workItem from="1498699158061" duration="108000" />
       <workItem from="1499075578419" duration="1151000" />
       <workItem from="1656914811474" duration="1753000" />
-      <workItem from="1656933377467" duration="1117000" />
+      <workItem from="1656933377467" duration="3697000" />
     </task>
+    <task id="LOCAL-00001" summary="adaptations">
+      <created>1656934770588</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1656934770588</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -273,6 +279,21 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adaptations" />
+    <option name="LAST_COMMIT_MESSAGE" value="adaptations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
