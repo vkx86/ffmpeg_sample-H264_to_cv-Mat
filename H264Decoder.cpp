@@ -8,6 +8,11 @@ H264Decoder::H264Decoder() {
     init();
 }
 
+H264Decoder::~H264Decoder() {
+    av_frame_free(&frame);
+    av_frame_free(&pFrameBGR);
+}
+
 void H264Decoder::init() {
 
     matReady = false;
@@ -70,9 +75,9 @@ void H264Decoder::decode(unsigned char *inputBuff, size_t size){
 
     if(out_buffer == nullptr){
 
-        BGRsize = avpicture_get_size(AV_PIX_FMT_BGR24, ctx->width,
+        BGRSize = avpicture_get_size(AV_PIX_FMT_BGR24, ctx->width,
                                      ctx->height);
-        out_buffer = (uint8_t *) av_malloc(BGRsize);
+        out_buffer = (uint8_t *) av_malloc(BGRSize);
 
         avpicture_fill((AVPicture *) pFrameBGR, out_buffer, AV_PIX_FMT_BGR24,
                        ctx->width, ctx->height);
@@ -91,7 +96,7 @@ void H264Decoder::decode(unsigned char *inputBuff, size_t size){
         sws_scale(img_convert_ctx, (const uint8_t *const *)frame->data,
                   frame->linesize, 0, ctx->height, pFrameBGR->data, pFrameBGR->linesize);
 
-        memcpy(pCvMat.data, out_buffer, BGRsize);
+        memcpy(pCvMat.data, out_buffer, BGRSize);
 
 //        printf("decoding frame: %d\n",frame_count);
         frame_count++;
@@ -121,6 +126,7 @@ cv::Mat H264Decoder::getMat() {
         return {};
     }
 }
+
 
 
 

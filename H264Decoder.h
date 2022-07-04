@@ -33,7 +33,7 @@ class H264Decoder {
 public :
 
     H264Decoder();
-//    ~H264Decoder(); TODO
+    ~H264Decoder();
     void init();
     void decode(unsigned char *inputBuff, size_t size);
     void play();
@@ -48,7 +48,7 @@ private:
     AVPacket avpkt{};
     AVFrame *pFrameBGR{};
 
-    int BGRsize{};
+    int BGRSize{};
     uint8_t *out_buffer = nullptr;
 
     struct SwsContext *img_convert_ctx{};
