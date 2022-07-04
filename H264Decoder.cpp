@@ -127,6 +127,14 @@ cv::Mat H264Decoder::getMat() {
     }
 }
 
+int H264Decoder::getBgrSize() const {
+    return BGRSize;
+}
+
+bool H264Decoder::isMatReady() const {
+    return matReady;
+}
+
 
 
 

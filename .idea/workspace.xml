@@ -14,8 +14,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1089731-d0f5-4bcd-90f1-fcecea1d07a6" name="Default" comment="renaming + clang-tidy">
+    <list default="true" id="d1089731-d0f5-4bcd-90f1-fcecea1d07a6" name="Default" comment="generated input from gstreamer + dtor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/H264Decoder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/H264Decoder.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/H264Decoder.h" beforeDir="false" afterPath="$PROJECT_DIR$/H264Decoder.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/sample.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,6 +235,7 @@
       <workItem from="1656914811474" duration="1753000" />
       <workItem from="1656933377467" duration="3951000" />
       <workItem from="1656954959692" duration="30000" />
+      <workItem from="1656955264266" duration="354000" />
     </task>
     <task id="LOCAL-00001" summary="adaptations">
       <created>1656934770588</created>
@@ -247,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656940027555</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="generated input from gstreamer + dtor">
+      <created>1656955614419</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1656955614419</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -295,7 +306,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adaptations" />
     <MESSAGE value="renaming + clang-tidy" />
-    <option name="LAST_COMMIT_MESSAGE" value="renaming + clang-tidy" />
+    <MESSAGE value="generated input from gstreamer + dtor" />
+    <option name="LAST_COMMIT_MESSAGE" value="generated input from gstreamer + dtor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -319,6 +331,11 @@
           <url>file://$PROJECT_DIR$/openheader.cpp</url>
           <line>159</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/H264Decoder.cpp</url>
+          <line>11</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

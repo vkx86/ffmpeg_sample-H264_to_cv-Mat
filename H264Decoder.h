@@ -55,6 +55,10 @@ private:
     cv::Mat pCvMat;
     bool matReady{};
 
+public:
+    int getBgrSize() const;
+    bool isMatReady() const;
+
 };
 
 #endif //OPENCVIDEO_MASTER_H264DECODER_H

@@ -15,8 +15,10 @@ int main() {
         fin.seekg(0, std::ios::beg);
 
         fin.read((char *) buf, len);
+
         decoder.decode(buf, len);
-        decoder.play();
+        if(decoder.isMatReady())
+            decoder.play();
     }
 }
 
