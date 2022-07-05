@@ -38,6 +38,7 @@ public :
     void decode(unsigned char *inputBuff, size_t size);
     void play();
     cv::Mat getMat();
+    bool isMatReady() const;
 
 private:
 
@@ -46,18 +47,18 @@ private:
     int frame_count{};
     AVFrame *frame{};
     AVPacket avpkt{};
-    AVFrame *pFrameBGR{};
 
-    int BGRSize{};
+    AVFrame *convFrame{};
+    int convSize{};
+
     uint8_t *out_buffer = nullptr;
 
     struct SwsContext *img_convert_ctx{};
     cv::Mat pCvMat;
     bool matReady{};
-
-public:
-    int getBgrSize() const;
-    bool isMatReady() const;
+    AVPixelFormat convPixFmt = AV_PIX_FMT_NONE;
+    int scaleWidth{};
+    int scaleHeight{};
 
 };
 

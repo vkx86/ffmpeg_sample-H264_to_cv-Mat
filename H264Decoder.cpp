@@ -5,12 +5,24 @@
 #include "H264Decoder.h"
 
 H264Decoder::H264Decoder() {
+    convPixFmt =
+        //AV_PIX_FMT_BGR24;
+        AV_PIX_FMT_NV12;
+
+    scaleWidth =
+            1280;
+            //640;
+
+    scaleHeight =
+            720;
+            //480;
+
     init();
 }
 
 H264Decoder::~H264Decoder() {
     av_frame_free(&frame);
-    av_frame_free(&pFrameBGR);
+    av_frame_free(&convFrame);
 }
 
 void H264Decoder::init() {
@@ -45,8 +57,7 @@ void H264Decoder::init() {
     frame_count = 0;
 
     //存储解码后转换的RGB数据
-    pFrameBGR = av_frame_alloc();
-
+    convFrame = av_frame_alloc();
 
 }
 
@@ -75,18 +86,25 @@ void H264Decoder::decode(unsigned char *inputBuff, size_t size){
 
     if(out_buffer == nullptr){
 
-        BGRSize = avpicture_get_size(AV_PIX_FMT_BGR24, ctx->width,
-                                     ctx->height);
-        out_buffer = (uint8_t *) av_malloc(BGRSize);
+        convSize = avpicture_get_size(convPixFmt, scaleWidth,
+                                      scaleHeight);
+        out_buffer = (uint8_t *) av_malloc(convSize);
 
-        avpicture_fill((AVPicture *) pFrameBGR, out_buffer, AV_PIX_FMT_BGR24,
-                       ctx->width, ctx->height);
+        avpicture_fill((AVPicture *) convFrame, out_buffer, convPixFmt,
+                       scaleWidth, scaleHeight);
 
         img_convert_ctx =
                 sws_getContext(ctx->width, ctx->height, ctx->pix_fmt,
-                               ctx->width, ctx->height, AV_PIX_FMT_BGR24, SWS_BICUBIC, nullptr, nullptr,
+                               scaleWidth, scaleHeight, convPixFmt,
+                               //SWS_BICUBIC,
+                               SWS_LANCZOS,
+                               nullptr, nullptr,
                                nullptr);
-        pCvMat.create(cv::Size(ctx->width, ctx->height), CV_8UC3);
+
+        pCvMat.create(cv::Size(scaleWidth, scaleHeight),
+                      //CV_8UC3
+                      CV_8UC1
+                      );
 
     }
 
@@ -94,9 +112,9 @@ void H264Decoder::decode(unsigned char *inputBuff, size_t size){
 
         matReady = true;
         sws_scale(img_convert_ctx, (const uint8_t *const *)frame->data,
-                  frame->linesize, 0, ctx->height, pFrameBGR->data, pFrameBGR->linesize);
+                  frame->linesize, 0, ctx->height, convFrame->data, convFrame->linesize);
 
-        memcpy(pCvMat.data, out_buffer, BGRSize);
+        memcpy(pCvMat.data, out_buffer, convSize);
 
 //        printf("decoding frame: %d\n",frame_count);
         frame_count++;
@@ -125,10 +143,6 @@ cv::Mat H264Decoder::getMat() {
     else{
         return {};
     }
-}
-
-int H264Decoder::getBgrSize() const {
-    return BGRSize;
 }
 
 bool H264Decoder::isMatReady() const {

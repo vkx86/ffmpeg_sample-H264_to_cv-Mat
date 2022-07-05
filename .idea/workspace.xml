@@ -18,7 +18,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/H264Decoder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/H264Decoder.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/H264Decoder.h" beforeDir="false" afterPath="$PROJECT_DIR$/H264Decoder.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/sample.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +234,9 @@
       <workItem from="1656914811474" duration="1753000" />
       <workItem from="1656933377467" duration="3951000" />
       <workItem from="1656954959692" duration="30000" />
-      <workItem from="1656955264266" duration="354000" />
+      <workItem from="1656955264266" duration="575000" />
+      <workItem from="1656956789517" duration="160000" />
+      <workItem from="1657036993285" duration="3264000" />
     </task>
     <task id="LOCAL-00001" summary="adaptations">
       <created>1656934770588</created>
@@ -258,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656955614419</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="generated input from gstreamer + dtor">
+      <created>1656955728934</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1656955728934</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -331,11 +339,6 @@
           <url>file://$PROJECT_DIR$/openheader.cpp</url>
           <line>159</line>
           <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/H264Decoder.cpp</url>
-          <line>11</line>
-          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
